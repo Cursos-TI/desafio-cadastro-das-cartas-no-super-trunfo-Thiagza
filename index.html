@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta do Estado</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+
+    .card {
+      width: 300px;
+      height: 400px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #3f51b5, #5a55ae);
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #009688, #26a69a);
+      transform: rotateY(180deg);
+      font-size: 16px;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .card-back p {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front" id="card-front">
+        Estado
+      </div>
+      <div class="card-back" id="card-back">
+        <!-- conteúdo preenchido pelo JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var estado = prompt("Digite uma letra de 'A' a 'H' que represente seu estado");
+    var codigodaCarta = prompt("Digite a letra de seu estado seguida de um número de 01 a 04 (ex: A01, B03).");
+    var nomedaCidade = prompt("Digite o nome da Cidade:");
+    var populacao = prompt("Agora o número de habitantes da cidade:");
+    var area = prompt("Digite a área (em km²):");
+    var pib = prompt("Qual o Produto Interno Bruto da cidade:");
+    var turistico = prompt("Por último a quantidade de pontos turísticos na cidade:");
+
+    // atualiza o conteudo da carta
+    
+    document.getElementById("card-front").innerText = "Estado " + estado;
+
+    document.getElementById("card-back").innerHTML = `
+      <p><strong>Código:</strong> ${codigodaCarta}</p>
+      <p><strong>Cidade:</strong> ${nomedaCidade}</p>
+      <p><strong>População:</strong> ${populacao}</p>
+      <p><strong>Área:</strong> ${area} km²</p>
+      <p><strong>PIB:</strong> ${pib}</p>
+      <p><strong>Pontos turísticos:</strong> ${turistico}</p>
+    `;
+  </script>
+
+</body>
+</html>
