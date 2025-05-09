@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Carta do Estado</title>
+  <title>Cartas do Estado</title>
   <style>
     body {
       background: #f0f2f5;
@@ -12,6 +12,7 @@
       height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      gap: 40px;
     }
 
     .card {
@@ -72,36 +73,41 @@
 
   <div class="card">
     <div class="card-inner">
-      <div class="card-front" id="card-front">
-        Estado
-      </div>
-      <div class="card-back" id="card-back">
-        <!-- conteúdo preenchido pelo JS -->
-      </div>
+      <div class="card-front" id="card-front-1">Estado</div>
+      <div class="card-back" id="card-back-1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front" id="card-front-2">Estado</div>
+      <div class="card-back" id="card-back-2"></div>
     </div>
   </div>
 
   <script>
-    var estado = prompt("Digite uma letra de 'A' a 'H' que represente seu estado");
-    var codigodaCarta = prompt("Digite a letra de seu estado seguida de um número de 01 a 04 (ex: A01, B03).");
-    var nomedaCidade = prompt("Digite o nome da Cidade:");
-    var populacao = prompt("Agora o número de habitantes da cidade:");
-    var area = prompt("Digite a área (em km²):");
-    var pib = prompt("Qual o Produto Interno Bruto da cidade:");
-    var turistico = prompt("Por último a quantidade de pontos turísticos na cidade:");
+    function preencherCarta(num) {
+      var estado = prompt(`Carta ${num}: Digite uma letra de 'A' a 'H' que represente seu estado`);
+      var codigo = prompt(`Carta ${num}: Digite a letra do estado seguida de um número (ex: A01)`);
+      var cidade = prompt(`Carta ${num}: Nome da cidade`);
+      var populacao = prompt(`Carta ${num}: População`);
+      var area = prompt(`Carta ${num}: Área (em km²)`);
+      var pib = prompt(`Carta ${num}: PIB`);
+      var pontos = prompt(`Carta ${num}: Pontos turísticos`);
 
-    // atualiza o conteudo da carta
-    
-    document.getElementById("card-front").innerText = "Carta " + estado;
+      document.getElementById(`card-front-${num}`).innerText = "Carta " + estado;
+      document.getElementById(`card-back-${num}`).innerHTML = `
+        <p><strong>Código:</strong> ${codigo}</p>
+        <p><strong>Cidade:</strong> ${cidade}</p>
+        <p><strong>População:</strong> ${populacao}</p>
+        <p><strong>Área:</strong> ${area} km²</p>
+        <p><strong>PIB:</strong> ${pib}</p>
+        <p><strong>Pontos turísticos:</strong> ${pontos}</p>
+      `;
+    }
 
-    document.getElementById("card-back").innerHTML = `
-      <p><strong>Código:</strong> ${codigodaCarta}</p>
-      <p><strong>Cidade:</strong> ${nomedaCidade}</p>
-      <p><strong>População:</strong> ${populacao}</p>
-      <p><strong>Área:</strong> ${area} km²</p>
-      <p><strong>PIB:</strong> ${pib}</p>
-      <p><strong>Pontos turísticos:</strong> ${turistico}</p>
-    `;
+    preencherCarta(1);
+    preencherCarta(2);
   </script>
 
 </body>
